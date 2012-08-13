@@ -4,7 +4,7 @@ import time
 
 import redis
 import redis.client
-import json
+import ujson as json
 
 from nose.tools import raises
 from nose.tools import eq_

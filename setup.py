@@ -29,10 +29,11 @@ setup(name='retools',
       install_requires=[
           "setproctitle>=1.1.2",
           "redis>=2.4.5",
+          "ujson",
       ],
       entry_points="""
       [console_scripts]
       retools-worker = retools.queue:run_worker
-      
+
       """
 )

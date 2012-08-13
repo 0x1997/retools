@@ -179,7 +179,7 @@ class TestCacheRegion(unittest.TestCase):
         mock_redis.pipeline.return_value = mock_pipeline
         mock_pipeline.execute.side_effect = side_effect
         mock_redis.hgetall.return_value = {'created': now,
-              'value': cPickle.dumps("This is a NEW value")}
+              'value': cPickle.dumps("This is a NEW value", -1)}
         with patch('retools.global_connection._redis', mock_redis):
             CR = self._makeOne()
             CR.add_region('short_term', 60)
@@ -198,7 +198,7 @@ class TestCacheRegion(unittest.TestCase):
         now = time.time()
         mock_redis.pipeline.return_value = mock_pipeline
         mock_pipeline.execute.return_value = ({'created': now,
-              'value': cPickle.dumps("This is a value")}, '0')
+              'value': cPickle.dumps("This is a value", -1)}, '0')
         with patch('retools.global_connection._redis', mock_redis):
             CR = self._makeOne()
             CR.add_region('short_term', 60)
@@ -220,7 +220,7 @@ class TestCacheRegion(unittest.TestCase):
         mock_pipeline = Mock(spec=redis.client.Pipeline)
         now = time.time()
         results = [0, ({'created': now - 200,
-                        'value': cPickle.dumps("This is a value")},
+                        'value': cPickle.dumps("This is a value", -1)},
                    '0')]
 
         def side_effect(*args):

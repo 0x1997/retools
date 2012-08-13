@@ -244,7 +244,7 @@ class CacheRegion(object):
 
                 p = redis.pipeline(transaction=True)
                 p.hmset(keys.redis_key, {'created': now,
-                                    'value': cPickle.dumps(value)})
+                                    'value': cPickle.dumps(value, -1)})
                 p.expire(keys.redis_key, redis_expiration)
                 cls._add_tracking(p, region, namespace, key)
                 if statistics:

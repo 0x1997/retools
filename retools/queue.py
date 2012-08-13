@@ -104,10 +104,7 @@ from optparse import OptionParser
 
 import pkg_resources
 
-try:
-    import json
-except ImportError:  # pragma: nocover
-    import simplejson as json
+import ujson as json
 
 from setproctitle import setproctitle
 

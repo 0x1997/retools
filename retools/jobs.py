@@ -1,4 +1,4 @@
-import json
+import ujson as json
 
 def simplemath(arg1=0, arg2=2):
     return arg1 + arg2
